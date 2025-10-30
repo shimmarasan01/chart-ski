@@ -1,0 +1,11 @@
+@ChartSki_HostAddress = http://localhost:5121
+
+POST {{ChartSki_HostAddress}}/api/fileupload
+Accept: application/json
+Content-Type: multipart/form-data
+
+###
+
+POST {{ChartSki_HostAddress}}/api/chart
+Content-Type: application/json
+Accept: application/json

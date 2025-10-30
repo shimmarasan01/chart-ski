@@ -1,0 +1,7 @@
+[
+  { "Country": "USA", "Sales": 1200, "Profit": 300, "Year": 2023 },
+  { "Country": "UK", "Sales": 900, "Profit": 250, "Year": 2023 },
+  { "Country": "Germany", "Sales": 800, "Profit": 200, "Year": 2023 },
+  { "Country": "France", "Sales": 950, "Profit": 275, "Year": 2023 },
+  { "Country": "Japan", "Sales": 1100, "Profit": 330, "Year": 2023 }
+]

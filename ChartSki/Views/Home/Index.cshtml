@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "ChartSki";
+}
+
+<html style="scrollbar-width: none;">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@ViewData["Title"]</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📊</text></svg>">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body class="bg-gray-50 min-h-screen text-gray-800">
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <h1 class="text-xl sm:text-2xl font-semibold text-gray-800 flex items-center gap-2">
+                    📊 @ViewData["Title"]
+                </h1>
+            </div>
+        </header>
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-8">
+            <!-- Upload CSV or JSON -->
+            <section class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                <h2 class="text-base sm:text-lg font-semibold mb-4 flex items-center gap-2">
+                    <span class="text-blue-600">1️⃣</span> Upload CSV or JSON
+                </h2>
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <input type="file" id="fileInput"
+                           class="flex-1 text-sm text-gray-700 cursor-pointer"
+                           accept=".csv, application/json" />
+                    <button id="uploadBtn"
+                            class="px-4 py-2 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition w-full sm:w-auto">
+                        Upload
+                    </button>
+                </div>
+                <p id="uploadStatus" class="mt-3 text-sm text-gray-600"></p>
+                <div class="mt-4 bg-gray-100 rounded-lg p-3 overflow-auto text-xs font-mono text-gray-700 h-[20em]">
+                    <pre id="uploadResult" class="whitespace-pre-wrap"></pre>
+                </div>
+            </section>
+            <!-- Configure Chart -->
+            <section class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                <h2 class="text-base sm:text-lg font-semibold mb-4 flex items-center gap-2">
+                    <span class="text-green-600">2️⃣</span> Configure Chart
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Label (X-axis)</label>
+                        <select id="labelSelect"
+                                class="w-full border-gray-300 rounded-lg focus:ring-blue-400 focus:border-blue-400"></select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Dataset (Y-axis)</label>
+                        <select id="valueSelect" multiple
+                                class="w-full border-gray-300 rounded-lg focus:ring-blue-400 focus:border-blue-400 h-32"></select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Chart Type</label>
+                        <select id="chartType"
+                                class="w-full border-gray-300 rounded-lg focus:ring-blue-400 focus:border-blue-400">
+                            <option value="bar">Bar</option>
+                            <option value="line">Line</option>
+                            <option value="pie">Pie</option>
+                            <option value="doughnut">Doughnut</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <button id="visualiseBtn"
+                            class="px-6 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition w-full sm:w-auto">
+                        Visualise
+                    </button>
+                    <span id="visualiseStatus" class="text-sm text-gray-600 text-center sm:text-left"></span>
+                </div>
+            </section>
+            <!-- Chart -->
+            <section id="chartContainer"
+                     class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 hidden overflow-x-auto">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2">
+                    <h3 class="text-base sm:text-lg font-semibold">📈 Chart</h3>
+                </div>
+                <div class="w-full overflow-auto">
+                    <canvas id="chartCanvas"></canvas>
+                </div>
+            </section>
+        </div>
+        <script src="~/js/main.js"></script>
+    </body>
+</html>
